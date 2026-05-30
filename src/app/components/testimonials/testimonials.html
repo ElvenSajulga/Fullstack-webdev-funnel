@@ -1,0 +1,51 @@
+<!-- [SECTION: Testimonials] — Borderless floating quote cards. -->
+<section id="testimonials" class="relative px-5 py-28 lg:py-36">
+  <div class="mx-auto max-w-6xl">
+    <!-- [SECTION: Testimonials] [ELEMENT: Section Heading] -->
+    <div appReveal class="mb-14 text-center">
+      <span
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-glass-border bg-white/5 px-4 py-1.5 text-sm font-medium text-text-secondary"
+      >
+        <lucide-icon [img]="HeaderIcon" class="size-4 text-brand-glow" />
+        Testimonials
+      </span>
+      <h2 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+        <span class="bg-gradient-to-r from-brand-glow to-brand-blue bg-clip-text text-transparent">
+          What people say
+        </span>
+      </h2>
+    </div>
+
+    <!-- [SECTION: Testimonials] [ELEMENT: Quote Grid] -->
+    <div class="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+      <!-- [SECTION: Testimonials] [ELEMENT: Quote Card] — Edit testimonials[] in testimonials.ts -->
+      @for (t of testimonials; track $index; let i = $index) {
+        <figure appReveal [revealDelay]="i * 120" class="quote-card relative flex flex-col rounded-3xl p-8">
+          <!-- [SECTION: Testimonials] [ELEMENT: Decorative Quote Mark] -->
+          <lucide-icon [img]="QuoteIcon" class="quote-mark size-12 text-brand-purple/40" />
+
+          <!-- [SECTION: Testimonials] [ELEMENT: Rating Stars] -->
+          <div class="mb-4 flex items-center gap-1">
+            @for (s of stars; track s) {
+              @if (s <= t.rating) {
+                <lucide-icon [img]="StarIcon" class="size-4 fill-brand-glow text-brand-glow" />
+              } @else {
+                <lucide-icon [img]="StarIcon" class="size-4 text-white/20" />
+              }
+            }
+          </div>
+
+          <blockquote class="flex-1 text-base leading-relaxed text-text-primary">
+            {{ t.quote }}
+          </blockquote>
+
+          <!-- [SECTION: Testimonials] [ELEMENT: Attribution] -->
+          <figcaption class="mt-6 border-t border-glass-border pt-5">
+            <p class="font-heading font-semibold text-text-primary">{{ t.name }}</p>
+            <p class="text-sm text-text-secondary">{{ t.position }}, {{ t.company }}</p>
+          </figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>

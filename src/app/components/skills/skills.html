@@ -1,0 +1,50 @@
+<!-- [SECTION: Skills] — Glass cards grouped by category. -->
+<section id="skills" class="relative px-5 py-28 lg:py-36">
+  <div class="mx-auto max-w-6xl">
+    <!-- [SECTION: Skills] [ELEMENT: Section Heading] -->
+    <div appReveal class="mb-14 text-center">
+      <span
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-glass-border bg-white/5 px-4 py-1.5 text-sm font-medium text-text-secondary"
+      >
+        <lucide-icon [img]="LayersIcon" class="size-4 text-brand-glow" />
+        Tech Stack
+      </span>
+      <h2 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+        <span class="bg-gradient-to-r from-brand-glow to-brand-blue bg-clip-text text-transparent">
+          Tools I build with
+        </span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base text-text-secondary lg:text-lg">
+        A versatile, modern stack spanning the entire product lifecycle.
+      </p>
+    </div>
+
+    <!-- [SECTION: Skills] [ELEMENT: Category Grid] -->
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <!-- [SECTION: Skills] [ELEMENT: Category Card] — Edit categories[] in skills.ts to add -->
+      @for (category of categories; track category.title; let i = $index) {
+        <div appReveal [revealDelay]="i * 120" class="skill-card rounded-3xl border border-glass-border p-7">
+          <!-- [SECTION: Skills] [ELEMENT: Category Header] -->
+          <div class="mb-6 flex items-center gap-3">
+            <span class="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-purple/30 to-brand-blue/30">
+              <lucide-icon [img]="category.icon" class="size-8 text-brand-glow" />
+            </span>
+            <h3 class="font-heading text-xl font-semibold text-text-primary">{{ category.title }}</h3>
+          </div>
+
+          <!-- [SECTION: Skills] [ELEMENT: Skill Item] — Duplicate to add a skill -->
+          <ul class="flex flex-wrap gap-2.5">
+            @for (skill of category.skills; track skill.name) {
+              <li
+                class="skill-chip inline-flex items-center gap-2 rounded-xl border border-glass-border bg-white/5 px-3 py-2 text-sm font-medium text-text-primary"
+              >
+                <lucide-icon [img]="skill.icon" class="size-5 text-brand-glow" />
+                {{ skill.name }}
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>

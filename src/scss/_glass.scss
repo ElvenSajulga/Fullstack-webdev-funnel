@@ -1,0 +1,65 @@
+/* ============================================================================
+   [SECTION: Global] [STYLE: Glass Card Mixin]
+   Reusable frosted-glass effect. backdrop-filter is not reliably expressible
+   with Tailwind v3/v4 utilities, so it is centralized here.
+   Edit blur, opacity, and border in src/scss/_variables.scss.
+   ----------------------------------------------------------------------------
+   Usage:
+     - Add class="glass-card" in any template, OR
+     - @use 'src/scss/glass' as glass;  .thing { @include glass.card; }
+   ========================================================================== */
+
+@mixin card($radius: 1.5rem) {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: $radius;
+}
+
+/* Hover lift + border glow (pair with Tailwind `transition` on the element). */
+@mixin card-hover {
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+/* Global utility classes so templates can opt in without importing the mixin. */
+.glass-card {
+  @include card;
+}
+
+.glass-card--rounded-2xl {
+  @include card(1rem);
+}
+
+.glass-card--hover {
+  @include card;
+  @include card-hover;
+}
+
+/* Sharper-edged glass variant (used by the Experience timeline). */
+.glass-panel-sharp {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--c-brand-purple);
+  border-radius: 0.25rem;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+}

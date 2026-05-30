@@ -1,0 +1,125 @@
+<!-- [SECTION: Contact] — Large centered glass form card + social links. -->
+<section id="contact" class="relative px-5 py-28 lg:py-36">
+  <div class="mx-auto max-w-2xl">
+    <!-- [SECTION: Contact] [ELEMENT: Section Heading] -->
+    <div appReveal class="mb-12 text-center">
+      <span
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-glass-border bg-white/5 px-4 py-1.5 text-sm font-medium text-text-secondary"
+      >
+        <lucide-icon [img]="MailIcon" class="size-4 text-brand-glow" />
+        Get in touch
+      </span>
+      <h2 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+        <span class="bg-gradient-to-r from-brand-glow to-brand-blue bg-clip-text text-transparent">
+          Let&rsquo;s build something
+        </span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-md text-base text-text-secondary lg:text-lg">
+        Have a project or role in mind? Send a message and I&rsquo;ll get back to you.
+      </p>
+    </div>
+
+    <!-- [SECTION: Contact] [ELEMENT: Form Card] -->
+    <div appReveal [revealDelay]="120" class="contact-card rounded-3xl border border-glass-border p-7 sm:p-10">
+      @if (submitted()) {
+        <!-- [SECTION: Contact] [ELEMENT: Success Message] -->
+        <div class="flex flex-col items-center gap-4 py-8 text-center">
+          <span class="flex size-16 items-center justify-center rounded-full bg-brand-purple/15">
+            <lucide-icon [img]="SuccessIcon" class="size-8 text-brand-glow" />
+          </span>
+          <h3 class="font-heading text-2xl font-semibold text-text-primary">Message sent!</h3>
+          <p class="text-text-secondary">Thanks for reaching out — I&rsquo;ll reply soon.</p>
+          <button
+            type="button"
+            (click)="submitted.set(false)"
+            class="mt-2 rounded-xl border border-glass-border bg-white/5 px-5 py-2.5 text-sm font-medium text-text-primary transition hover:bg-white/10"
+          >
+            Send another
+          </button>
+        </div>
+      } @else {
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="flex flex-col gap-5">
+          <!-- [SECTION: Contact] [ELEMENT: Name Field] — inline User icon -->
+          <div>
+            <label for="name" class="mb-2 block text-sm font-medium text-text-secondary">Name</label>
+            <div class="field">
+              <lucide-icon [img]="UserIcon" class="field-icon size-5" />
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                placeholder="Your name"
+                autocomplete="name"
+                class="field-input"
+              />
+            </div>
+            @if (showError('name')) {
+              <p class="mt-1.5 text-sm text-red-400">Please enter your name.</p>
+            }
+          </div>
+
+          <!-- [SECTION: Contact] [ELEMENT: Email Field] — inline Mail icon -->
+          <div>
+            <label for="email" class="mb-2 block text-sm font-medium text-text-secondary">Email</label>
+            <div class="field">
+              <lucide-icon [img]="MailIcon" class="field-icon size-5" />
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                class="field-input"
+              />
+            </div>
+            @if (showError('email')) {
+              <p class="mt-1.5 text-sm text-red-400">Please enter a valid email address.</p>
+            }
+          </div>
+
+          <!-- [SECTION: Contact] [ELEMENT: Message Field] — inline MessageSquare icon -->
+          <div>
+            <label for="message" class="mb-2 block text-sm font-medium text-text-secondary">Message</label>
+            <div class="field field--textarea">
+              <lucide-icon [img]="MessageIcon" class="field-icon size-5" />
+              <textarea
+                id="message"
+                rows="5"
+                formControlName="message"
+                placeholder="Tell me about your project..."
+                class="field-input resize-none"
+              ></textarea>
+            </div>
+            @if (showError('message')) {
+              <p class="mt-1.5 text-sm text-red-400">Please enter at least 10 characters.</p>
+            }
+          </div>
+
+          <!-- [SECTION: Contact] [ELEMENT: Submit Button] — Send icon + glow pulse hover -->
+          <button
+            type="submit"
+            class="btn-glow group mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-blue px-7 py-3.5 font-medium text-white"
+          >
+            <lucide-icon [img]="SendIcon" class="size-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+            Send Message
+          </button>
+        </form>
+      }
+    </div>
+
+    <!-- [SECTION: Contact] [ELEMENT: Social Links] — large, hoverable -->
+    <div appReveal [revealDelay]="220" class="mt-10 flex items-center justify-center gap-5">
+      @for (social of socials; track social.label) {
+        <a
+          [href]="social.url"
+          target="_blank"
+          rel="noopener"
+          [attr.aria-label]="social.label"
+          class="social-link flex size-14 items-center justify-center rounded-2xl border border-glass-border bg-white/5 text-text-secondary"
+        >
+          <lucide-icon [img]="social.icon" class="size-6" />
+        </a>
+      }
+    </div>
+  </div>
+</section>

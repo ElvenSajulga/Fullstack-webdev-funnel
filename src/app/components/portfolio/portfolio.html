@@ -1,0 +1,72 @@
+<!-- [SECTION: Portfolio] — Responsive grid of rounded glass project cards. -->
+<section id="portfolio" class="relative px-5 py-28 lg:py-36">
+  <div class="mx-auto max-w-6xl">
+    <!-- [SECTION: Portfolio] [ELEMENT: Section Heading] -->
+    <div appReveal class="mb-14 text-center">
+      <span
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-glass-border bg-white/5 px-4 py-1.5 text-sm font-medium text-text-secondary"
+      >
+        <lucide-icon [img]="FolderOpenIcon" class="size-4 text-brand-glow" />
+        Portfolio
+      </span>
+      <h2 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+        <span class="bg-gradient-to-r from-brand-glow to-brand-blue bg-clip-text text-transparent">
+          Selected work
+        </span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base text-text-secondary lg:text-lg">
+        A few projects I&rsquo;m proud of. Swap these placeholders for your own.
+      </p>
+    </div>
+
+    <!-- [SECTION: Portfolio] [ELEMENT: Project Grid] -->
+    <div class="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+      <!-- [SECTION: Portfolio] [ELEMENT: Project Card] — Edit projects[] in portfolio.ts -->
+      @for (project of projects; track project.name; let i = $index) {
+        <article appReveal [revealDelay]="i * 120" class="project-card flex flex-col overflow-hidden rounded-3xl border border-glass-border">
+          <!-- [SECTION: Portfolio] [ELEMENT: Card Thumbnail] — Replace with a screenshot <img> -->
+          <div class="project-thumb flex h-40 items-center justify-center">
+            <lucide-icon [img]="project.icon" class="size-12 text-brand-glow" />
+          </div>
+
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="font-heading text-xl font-semibold text-text-primary">{{ project.name }}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">{{ project.description }}</p>
+
+            <!-- [SECTION: Portfolio] [ELEMENT: Tech Tags] -->
+            <ul class="mt-4 flex flex-wrap gap-2">
+              @for (tag of project.tech; track tag) {
+                <li class="rounded-full border border-glass-border bg-brand-purple/10 px-3 py-1 text-xs font-medium text-brand-glow">
+                  {{ tag }}
+                </li>
+              }
+            </ul>
+
+            <!-- [SECTION: Portfolio] [ELEMENT: CTA Buttons] — Live demo + source code -->
+            <div class="mt-6 flex items-center gap-3">
+              <a
+                [href]="project.liveUrl"
+                target="_blank"
+                rel="noopener"
+                class="group inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-blue px-4 py-2.5 text-sm font-medium text-white transition hover:-translate-y-0.5"
+              >
+                <lucide-icon [img]="ExternalLinkIcon" class="size-5 transition-transform group-hover:scale-110" />
+                Live Demo
+              </a>
+              <a
+                [href]="project.githubUrl"
+                target="_blank"
+                rel="noopener"
+                aria-label="View source on GitHub"
+                class="group inline-flex items-center justify-center gap-2 rounded-xl border border-glass-border bg-white/5 px-4 py-2.5 text-sm font-medium text-text-primary transition hover:-translate-y-0.5 hover:border-brand-glow/60 hover:bg-white/10"
+              >
+                <lucide-icon [img]="GithubIcon" class="size-5 transition-transform group-hover:scale-110" />
+                Code
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

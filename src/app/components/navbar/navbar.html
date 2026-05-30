@@ -1,0 +1,77 @@
+<!-- [SECTION: Navbar] [ELEMENT: Sticky Glass Bar] — backdrop blur intensifies on scroll -->
+<header
+  class="fixed inset-x-0 top-0 z-[60] transition-all duration-300"
+  [class.nav-scrolled]="scrolled()"
+>
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
+    <!-- [SECTION: Navbar] [ELEMENT: Logo / Name] — Change your name and logo icon here -->
+    <a
+      href="#hero"
+      (click)="onNavClick('hero', $event)"
+      class="group flex items-center gap-2.5 font-heading text-lg font-bold tracking-tight text-text-primary"
+    >
+      <span
+        class="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-purple to-brand-blue shadow-lg shadow-brand-purple/30 transition-transform duration-300 group-hover:scale-110"
+      >
+        <!-- [SECTION: Global] [ELEMENT: Lucide Icon] — Change icon via [img] binding -->
+        <lucide-icon [img]="LogoIcon" class="size-5 text-white" />
+      </span>
+      <span>John Elven Sajulga</span>
+    </a>
+
+    <!-- [SECTION: Navbar] [ELEMENT: Desktop Links] — Edit the links[] array in navbar.ts -->
+    <ul class="hidden items-center gap-1 lg:flex">
+      @for (link of links; track link.id) {
+        <li>
+          <a
+            [href]="'#' + link.id"
+            (click)="onNavClick(link.id, $event)"
+            class="nav-link flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium"
+            [class.is-active]="activeSection() === link.id"
+          >
+            <lucide-icon [img]="link.icon" class="size-4" />
+            <span>{{ link.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- [SECTION: Navbar] [ELEMENT: Mobile Hamburger] — Menu / X icon toggle -->
+    <button
+      type="button"
+      class="flex size-10 items-center justify-center rounded-lg border border-glass-border text-text-primary transition-colors hover:text-brand-glow lg:hidden"
+      [attr.aria-expanded]="mobileOpen()"
+      aria-label="Toggle navigation menu"
+      (click)="toggleMobile()"
+    >
+      <lucide-icon [img]="mobileOpen() ? XIcon : MenuIcon" class="size-6" />
+    </button>
+  </nav>
+</header>
+
+<!-- [SECTION: Navbar] [ELEMENT: Mobile Drawer Backdrop] -->
+<div
+  class="mobile-backdrop lg:hidden"
+  [class.is-open]="mobileOpen()"
+  (click)="closeMobile()"
+  aria-hidden="true"
+></div>
+
+<!-- [SECTION: Navbar] [ELEMENT: Mobile Drawer] — Slide-in panel; edit slide transition in navbar.scss -->
+<aside class="mobile-drawer lg:hidden" [class.is-open]="mobileOpen()">
+  <ul class="flex flex-col gap-1 p-6 pt-24">
+    @for (link of links; track link.id) {
+      <li>
+        <a
+          [href]="'#' + link.id"
+          (click)="onNavClick(link.id, $event)"
+          class="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-text-secondary transition-colors hover:bg-white/5 hover:text-brand-glow"
+          [class.is-active-mobile]="activeSection() === link.id"
+        >
+          <lucide-icon [img]="link.icon" class="size-5" />
+          <span>{{ link.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</aside>

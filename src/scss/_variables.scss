@@ -1,0 +1,34 @@
+/* ============================================================================
+   [SECTION: Global] [STYLE: CSS Custom Properties]
+   Values that Tailwind utilities cannot express cleanly (glass recipe, blob
+   colors, blur radius, timing). Edit here to retune the whole glass theme.
+   ========================================================================== */
+
+:root {
+  /* Glassmorphism recipe — edit blur/opacity/border in one place */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-strong: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(167, 139, 250, 0.45); /* brand-glow tint */
+  --glass-blur: 16px;
+
+  /* Brand colors mirrored for use inside box-shadow / gradients in SCSS */
+  --c-brand-dark: #07071a;
+  --c-brand-purple: #7c3aed;
+  --c-brand-purple-dark: #6c2bd9;
+  --c-brand-blue: #3b82f6;
+  --c-brand-blue-dark: #1a56db;
+  --c-brand-glow: #a78bfa;
+
+  /* Decorative blob gradients (used by ::before / ::after blob elements) */
+  --blob-purple: radial-gradient(circle at center, rgba(108, 43, 217, 0.55), transparent 70%);
+  --blob-blue: radial-gradient(circle at center, rgba(26, 86, 219, 0.5), transparent 70%);
+  --blob-glow: radial-gradient(circle at center, rgba(167, 139, 250, 0.45), transparent 70%);
+
+  /* Shared elevation shadows */
+  --shadow-deep: 0 30px 80px -20px rgba(108, 43, 217, 0.45), 0 10px 40px -10px rgba(26, 86, 219, 0.35);
+  --shadow-card-hover: 0 20px 50px -15px rgba(124, 58, 237, 0.55);
+
+  /* Sticky navbar height — used as scroll-margin offset on sections */
+  --nav-height: 4.5rem;
+}

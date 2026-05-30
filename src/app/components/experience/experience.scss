@@ -1,0 +1,58 @@
+/* [COMPONENT: ExperienceComponent] [STYLE: Vertical Timeline] */
+
+/* The accent line position. Bump --line-x to shift the whole rail. */
+.timeline {
+  --line-x: 1.25rem;
+}
+@media (min-width: 640px) {
+  .timeline {
+    --line-x: 2rem;
+  }
+}
+
+/* [SECTION: Experience] [STYLE: Accent Line] — brand-purple → brand-blue rail. */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  left: var(--line-x);
+  transform: translateX(-50%);
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--c-brand-purple),
+    var(--c-brand-blue) 75%,
+    transparent
+  );
+}
+
+/* Each entry makes room on the left for the node + line. */
+.timeline-item {
+  padding-left: 3.25rem;
+}
+@media (min-width: 640px) {
+  .timeline-item {
+    padding-left: 4.5rem;
+  }
+}
+
+/* [SECTION: Experience] [STYLE: Timeline Node] — icon marker that sits on the line. */
+.timeline-node {
+  position: absolute;
+  top: 0.1rem;
+  left: var(--line-x);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--c-brand-purple), var(--c-brand-blue));
+  /* The dark ring "cuts" the line behind the node. */
+  box-shadow:
+    0 0 0 5px var(--c-brand-dark),
+    0 0 20px rgba(124, 58, 237, 0.6);
+}

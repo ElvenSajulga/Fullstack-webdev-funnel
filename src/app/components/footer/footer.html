@@ -1,0 +1,63 @@
+<!-- [SECTION: Footer] — Minimal dark glass strip. -->
+<footer class="footer-strip relative z-10 border-t border-glass-border">
+  <div class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 py-12 lg:flex-row lg:justify-between lg:gap-6 lg:px-8">
+    <!-- [SECTION: Footer] [ELEMENT: Name + Tagline] — Edit here -->
+    <div class="flex flex-col items-center gap-2 lg:items-start">
+      <a
+        href="#hero"
+        (click)="onNavClick('hero', $event)"
+        class="flex items-center gap-2.5 font-heading text-lg font-bold text-text-primary"
+      >
+        <span class="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-purple to-brand-blue">
+          <lucide-icon [img]="LogoIcon" class="size-4 text-white" />
+        </span>
+        John Elven Sajulga
+      </a>
+      <p class="text-sm text-text-secondary">Full Stack Developer · Work smart, Be Smart</p>
+    </div>
+
+    <!-- [SECTION: Footer] [ELEMENT: Nav Links] — center -->
+    <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+      @for (link of links; track link.id) {
+        <a
+          [href]="'#' + link.id"
+          (click)="onNavClick(link.id, $event)"
+          class="text-sm font-medium text-text-secondary transition-colors hover:text-brand-glow"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+
+    <!-- [SECTION: Footer] [ELEMENT: Social Links] — Lucide icons for every social -->
+    <div class="flex items-center gap-3">
+      @for (social of socials; track social.label) {
+        <a
+          [href]="social.url"
+          target="_blank"
+          rel="noopener"
+          [attr.aria-label]="social.label"
+          class="footer-social flex size-10 items-center justify-center rounded-xl border border-glass-border bg-white/5 text-text-secondary"
+        >
+          <lucide-icon [img]="social.icon" class="size-5" />
+        </a>
+      }
+      <!-- [SECTION: Footer] [ELEMENT: Back to Top] -->
+      <button
+        type="button"
+        (click)="scrollToTop()"
+        aria-label="Back to top"
+        class="footer-social flex size-10 items-center justify-center rounded-xl border border-glass-border bg-white/5 text-text-secondary"
+      >
+        <lucide-icon [img]="ArrowUpIcon" class="size-5" />
+      </button>
+    </div>
+  </div>
+
+  <!-- [SECTION: Footer] [ELEMENT: Copyright] — right-aligned bottom bar -->
+  <div class="border-t border-glass-border/60">
+    <div class="mx-auto max-w-7xl px-5 py-5 text-center text-sm text-text-secondary lg:px-8 lg:text-right">
+      &copy; {{ year }} John Elven Sajulga. All rights reserved.
+    </div>
+  </div>
+</footer>

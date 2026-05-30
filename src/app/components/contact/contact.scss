@@ -1,0 +1,72 @@
+/* [COMPONENT: ContactComponent] [STYLE: Glass Form] */
+
+.contact-card {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-deep);
+}
+
+/* Field wrapper positions the inline Lucide icon over the input. */
+.field {
+  position: relative;
+}
+
+.field-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 0.85rem;
+  color: var(--c-brand-glow);
+  pointer-events: none;
+}
+
+/* Textarea icon sticks to the top instead of vertically centering. */
+.field--textarea .field-icon {
+  top: 0.9rem;
+}
+
+.field-input {
+  width: 100%;
+  border-radius: 0.85rem;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f1f5f9;
+  padding: 0.75rem 1rem 0.75rem 2.85rem;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.field-input::placeholder {
+  color: rgba(148, 163, 184, 0.6);
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: var(--c-brand-glow);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.35);
+}
+
+/* [SECTION: Contact] [STYLE: Social Link] — hover lift + glow + icon scale. */
+.social-link {
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.social-link:hover {
+  transform: translateY(-4px);
+  color: var(--c-brand-glow);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.45);
+}
+.social-link:hover lucide-icon {
+  transform: scale(1.1);
+}
+.social-link lucide-icon {
+  transition: transform 0.3s ease;
+}

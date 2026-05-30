@@ -1,0 +1,57 @@
+<!-- [SECTION: Experience] — Sharp-edged vertical timeline. -->
+<section id="experience" class="relative px-5 py-28 lg:py-36">
+  <div class="mx-auto max-w-4xl">
+    <!-- [SECTION: Experience] [ELEMENT: Section Heading] -->
+    <div appReveal class="mb-14 text-center">
+      <span
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-glass-border bg-white/5 px-4 py-1.5 text-sm font-medium text-text-secondary"
+      >
+        <lucide-icon [img]="BriefcaseIcon" class="size-4 text-brand-glow" />
+        Experience
+      </span>
+      <h2 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+        <span class="bg-gradient-to-r from-brand-glow to-brand-blue bg-clip-text text-transparent">
+          Where I&rsquo;ve worked
+        </span>
+      </h2>
+    </div>
+
+    <!-- [SECTION: Experience] [ELEMENT: Timeline] — Purple accent line + icon nodes -->
+    <div class="timeline relative">
+      <!-- [SECTION: Experience] [ELEMENT: Timeline Entry] — Duplicate via entries[] in experience.ts -->
+      @for (entry of entries; track $index; let i = $index) {
+        <div appReveal [revealDelay]="i * 120" class="timeline-item relative pb-12 last:pb-0">
+          <!-- [SECTION: Experience] [ELEMENT: Timeline Node] — Marker icon -->
+          <span class="timeline-node">
+            <lucide-icon [img]="NodeIcon" class="size-5 text-white" />
+          </span>
+
+          <!-- [SECTION: Experience] [ELEMENT: Entry Card] — Sharp glass panel -->
+          <article class="glass-panel-sharp p-6">
+            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+              <h3 class="font-heading text-xl font-semibold text-text-primary">{{ entry.role }}</h3>
+              <span class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-glow">
+                <lucide-icon [img]="CalendarIcon" class="size-4" />
+                {{ entry.duration }}
+              </span>
+            </div>
+            <p class="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary">
+              <lucide-icon [img]="CompanyIcon" class="size-4 text-brand-blue" />
+              {{ entry.company }}
+            </p>
+
+            <!-- [SECTION: Experience] [ELEMENT: Responsibilities] -->
+            <ul class="mt-4 space-y-2">
+              @for (item of entry.responsibilities; track item) {
+                <li class="flex items-start gap-2.5 text-sm text-text-secondary">
+                  <lucide-icon [img]="CheckIcon" class="mt-0.5 size-4 shrink-0 text-brand-glow" />
+                  <span>{{ item }}</span>
+                </li>
+              }
+            </ul>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>

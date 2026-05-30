@@ -1,0 +1,61 @@
+/* ============================================================================
+   GLOBAL SCSS ENTRY
+   Tailwind v4 + its design tokens are loaded separately via src/styles.css.
+   This file aggregates the custom SCSS layer that Tailwind can't express:
+   CSS variables, glassmorphism, keyframes and scroll-reveal motion.
+   ========================================================================== */
+
+/* [SECTION: Global] — Import all SCSS partials here (order matters: variables first). */
+@use 'scss/variables';
+@use 'scss/glass';
+@use 'scss/animations';
+
+/* [SECTION: Global] [STYLE: Layout helpers] — generic utilities reused across sections. */
+
+/* Section vertical rhythm + scroll offset so anchored nav links clear the sticky navbar. */
+section[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+/* Decorative background blob — base styling; size/position/color set inline per use. */
+.bg-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* [SECTION: Global] [STYLE: Glow Button] — Gradient CTA with glow-pulse on hover.
+   Used by the Hero CTA and the Contact submit button. */
+.btn-glow {
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.6);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-2px);
+  animation: glow-pulse 2.2s ease-in-out infinite;
+}
+
+/* Gradient heading text helper (mirrors the Tailwind gradient class for reuse). */
+.text-gradient {
+  background-image: linear-gradient(to right, var(--c-brand-glow), var(--c-brand-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Custom scrollbar to match the dark glass theme. */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #07071a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--c-brand-purple), var(--c-brand-blue));
+  border-radius: 9999px;
+}

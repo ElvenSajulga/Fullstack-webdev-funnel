@@ -1,0 +1,36 @@
+/* [COMPONENT: SkillsComponent] [STYLE: Glass Category Cards] */
+
+.skill-card {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Individual skill chips brighten and lift their icon on hover. */
+.skill-chip {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+.skill-chip:hover {
+  background-color: rgba(167, 139, 250, 0.12);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+}
+.skill-chip:hover lucide-icon {
+  transform: scale(1.1);
+}
+.skill-chip lucide-icon {
+  transition: transform 0.25s ease;
+}

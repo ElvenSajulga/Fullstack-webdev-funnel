@@ -1,0 +1,95 @@
+<!-- [SECTION: Hero] — Full-width immersive intro. No card; floating parallax blobs. -->
+<section
+  id="hero"
+  class="relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-20 pt-28"
+>
+  <!-- [SECTION: Hero] [ELEMENT: Parallax Blobs] — Outer div = parallax (scroll), inner = float loop.
+       Adjust the 0.xx multiplier on each transform to change parallax depth. -->
+  <div class="hero-blobs" aria-hidden="true">
+    <div class="hero-blob hero-blob--1" [style.transform]="'translate3d(0,' + scrollY() * 0.25 + 'px,0)'">
+      <span class="hero-blob__inner"></span>
+    </div>
+    <div class="hero-blob hero-blob--2" [style.transform]="'translate3d(0,' + scrollY() * 0.4 + 'px,0)'">
+      <span class="hero-blob__inner"></span>
+    </div>
+    <div class="hero-blob hero-blob--3" [style.transform]="'translate3d(0,' + scrollY() * 0.15 + 'px,0)'">
+      <span class="hero-blob__inner"></span>
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-4xl text-center">
+    <!-- [SECTION: Hero] [ELEMENT: Availability Badge] — Edit status text / icon here -->
+    <div
+      appReveal
+      class="mb-7 inline-flex items-center gap-2 rounded-full border border-glass-border bg-white/5 px-4 py-1.5 text-sm font-medium text-text-secondary"
+    >
+      <lucide-icon [img]="SparklesIcon" class="size-4 text-brand-glow" />
+      Available for new opportunities
+    </div>
+
+    <!-- [SECTION: Hero] [ELEMENT: Eyebrow] -->
+    <p appReveal [revealDelay]="80" class="mb-2 font-heading text-lg font-medium text-text-secondary">
+      Hi, I&rsquo;m
+    </p>
+
+    <!-- [SECTION: Hero] [ELEMENT: Main Headline] — Edit your name here -->
+    <h1
+      appReveal
+      [revealDelay]="150"
+      class="font-heading text-6xl font-extrabold leading-none tracking-tight sm:text-7xl xl:text-9xl"
+    >
+      <span class="bg-gradient-to-r from-brand-glow to-brand-blue bg-clip-text text-transparent">
+        JOHN ELVEN SAJULGA
+      </span>
+    </h1>
+
+    <!-- [SECTION: Hero] [ELEMENT: Title] -->
+    <h2
+      appReveal
+      [revealDelay]="220"
+      class="mt-5 font-heading text-2xl font-semibold text-text-primary sm:text-3xl xl:text-4xl"
+    >
+      Full Stack Developer
+    </h2>
+
+    <!-- [SECTION: Hero] [ELEMENT: Tagline] — Edit your one-line pitch here -->
+    <p appReveal [revealDelay]="300" class="mx-auto mt-6 max-w-2xl text-base text-text-secondary lg:text-lg">
+      I build fast, scalable web applications end to end, from
+      pixel-perfect interfaces to resilient APIs and databases.
+    </p>
+
+    <!-- [SECTION: Hero] [ELEMENT: CTA Buttons] — Change button labels / icons here -->
+    <div
+      appReveal
+      [revealDelay]="380"
+      class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+    >
+      <a
+        href="#portfolio"
+        (click)="scrollTo('portfolio', $event)"
+        class="btn-glow group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-blue px-7 py-3.5 font-medium text-white sm:w-auto"
+      >
+        <lucide-icon [img]="FolderOpenIcon" class="size-6 transition-transform duration-300 group-hover:scale-110" />
+        View My Work
+      </a>
+      <a
+        href="#contact"
+        (click)="scrollTo('contact', $event)"
+        class="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-glass-border bg-white/5 px-7 py-3.5 font-medium text-text-primary transition duration-300 hover:-translate-y-0.5 hover:border-brand-glow/60 hover:bg-white/10 sm:w-auto"
+      >
+        <lucide-icon [img]="MailIcon" class="size-6 transition-transform duration-300 group-hover:scale-110" />
+        Contact Me
+      </a>
+    </div>
+  </div>
+
+  <!-- [SECTION: Hero] [ELEMENT: Scroll Hint] — Bouncing chevron to the About section -->
+  <a
+    href="#about"
+    (click)="scrollTo('about', $event)"
+    class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-text-secondary transition-colors hover:text-brand-glow"
+    aria-label="Scroll to About"
+  >
+    <lucide-icon [img]="ChevronDownIcon" class="scroll-hint size-8" />
+  </a>
+</section>

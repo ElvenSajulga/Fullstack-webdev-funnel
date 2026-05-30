@@ -1,0 +1,24 @@
+/* [COMPONENT: TestimonialsComponent] [STYLE: Floating Quote Cards] */
+
+/* Borderless glass card lifted by a deep shadow. */
+.quote-card {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-deep);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.quote-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Large decorative quote glyph anchored to the top-right corner. */
+.quote-mark {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  pointer-events: none;
+}

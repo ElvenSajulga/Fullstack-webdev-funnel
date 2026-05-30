@@ -1,0 +1,61 @@
+<!-- [SECTION: About] — Floating glass card with deep shadow. -->
+<section id="about" class="relative px-5 py-28 lg:py-36">
+  <div class="mx-auto max-w-6xl">
+    <!-- [SECTION: About] [ELEMENT: Section Heading] — Edit eyebrow + title here -->
+    <div appReveal class="mb-14 text-center">
+      <span
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-glass-border bg-white/5 px-4 py-1.5 text-sm font-medium text-text-secondary"
+      >
+        <lucide-icon [img]="SparklesIcon" class="size-4 text-brand-glow" />
+        About Me
+      </span>
+      <h2 class="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+        <span class="bg-gradient-to-r from-brand-glow to-brand-blue bg-clip-text text-transparent">
+          Turning ideas into reliable software
+        </span>
+      </h2>
+    </div>
+
+    <!-- [SECTION: About] [ELEMENT: Floating Card] — Borderless, deep purple/blue shadow -->
+    <div appReveal [revealDelay]="120" class="about-card grid gap-10 p-8 lg:grid-cols-5 lg:p-12">
+      <!-- [SECTION: About] [ELEMENT: Photo] — Replace placeholder with [YOUR PHOTO URL] -->
+      <div class="lg:col-span-2">
+        <div class="about-photo relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl">
+          <!-- Replace this block with: <img src="[YOUR PHOTO URL]" alt="[YOUR FULL NAME]" class="h-full w-full object-cover rounded-2xl" /> -->
+          <div class="flex flex-col items-center gap-3 text-text-secondary">
+            <lucide-icon [img]="UserIcon" class="size-12 text-brand-glow" />
+            <span class="text-sm">[YOUR PHOTO URL]</span>
+          </div>
+        </div>
+      </div>  
+
+      <!-- [SECTION: About] [ELEMENT: Bio + Traits] -->
+      <div class="lg:col-span-3">
+        <!-- [SECTION: About] [ELEMENT: Bio] — Write your story here -->
+        <p class="text-base leading-relaxed text-text-secondary lg:text-lg">
+          I&rsquo;m a Full Stack Developer with a passion for crafting
+          seamless digital experiences. From designing intuitive front-end
+          interfaces to architecting robust back-end systems, I love building
+          products that are fast, accessible, and a joy to use.
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-text-secondary lg:text-lg">
+          When I&rsquo;m not shipping features, you&rsquo;ll find me exploring new
+          technologies, contributing to open source, and mentoring fellow developers.
+        </p>
+
+        <!-- [SECTION: About] [ELEMENT: Trait Card] — Duplicate to add a strength -->
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          @for (trait of traits; track trait.title) {
+            <div class="trait-card rounded-2xl border border-glass-border bg-white/5 p-4">
+              <span class="mb-3 inline-flex size-10 items-center justify-center rounded-xl bg-brand-purple/15">
+                <lucide-icon [img]="trait.icon" class="size-6 text-brand-glow" />
+              </span>
+              <h3 class="font-heading text-sm font-semibold text-text-primary">{{ trait.title }}</h3>
+              <p class="mt-1 text-sm text-text-secondary">{{ trait.text }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

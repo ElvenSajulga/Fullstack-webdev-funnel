@@ -1,59 +1,81 @@
-# FullStackWebDevFunnel
+# Full Stack Developer — Portfolio Funnel
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+A bold, glassmorphism-themed single-page funnel site to showcase your work and
+convert hiring managers and clients. Built with **Angular 21** (standalone
+components), **Tailwind CSS v4**, **SCSS**, and **Lucide** icons.
 
-## Development server
+## Tech stack
 
-To start a local development server, run:
+| Concern        | Choice                                                        |
+| -------------- | ------------------------------------------------------------- |
+| Framework      | Angular 21, standalone components, Angular Router (SPA)       |
+| Styling        | Tailwind CSS v4 (design tokens in CSS `@theme`)               |
+| Custom effects | SCSS partials (glassmorphism, keyframes, blobs, parallax)     |
+| Icons          | `lucide-angular` (no emojis anywhere)                         |
+| Fonts          | Space Grotesk (headings) + Inter (body), loaded in index.html |
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Getting started
 
 ```bash
-ng generate --help
+npm install
+npm start          # dev server at http://localhost:4200
+npm run build      # production build → dist/
+npm test           # unit tests (Vitest)
 ```
 
-## Building
+## Project structure
 
-To build the project run:
-
-```bash
-ng build
+```
+src/
+  index.html                 Google Fonts <link> tags + meta
+  styles.css                 Tailwind v4 entry + design tokens (@theme)  ← brand colors/fonts/animations
+  styles.scss                Global SCSS entry (imports the partials below)
+  scss/
+    _variables.scss          CSS custom properties (glass recipe, blob colors, shadows)
+    _glass.scss              Reusable glass-card mixin + .glass-card classes
+    _animations.scss         All @keyframes + scroll-reveal classes
+  app/
+    app.ts/.html/.scss       Root shell: background blobs + navbar + outlet + footer
+    app.routes.ts            '' → HomeComponent
+    app.config.ts            Router with smooth anchor scrolling
+    pages/home/              Composes all 7 sections in order
+    components/
+      navbar/                Sticky glass bar, scroll-spy, mobile drawer
+      hero/                  Parallax blobs, CTAs, scroll chevron
+      about/  skills/  experience/  portfolio/  testimonials/  contact/  footer/
+    shared/
+      reveal-on-scroll.directive.ts   [appReveal] IntersectionObserver fade-up
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## How to customize
 
-## Running unit tests
+Every file is labeled with `[SECTION] / [ELEMENT] / [COMPONENT]` comments so you
+can find things fast. Search the codebase for these bracketed placeholders and
+replace them with your details:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- `[YOUR FULL NAME]`, `[YOUR TAGLINE]`, `[YOUR BIO]`, `[YOUR PHOTO URL]`
+- `[YOUR EMAIL]`, `[YOUR GITHUB URL]`, `[YOUR LINKEDIN URL]`
+- Projects: edit the `projects` array in `components/portfolio/portfolio.ts`
+- Experience: edit the `entries` array in `components/experience/experience.ts`
+- Skills: edit the `categories` array in `components/skills/skills.ts`
+- Testimonials: edit the `testimonials` array in `components/testimonials/testimonials.ts`
 
-```bash
-ng test
+### Change the design system
+
+- **Colors / fonts / animation tokens** → `src/styles.css` (`@theme` block).
+  e.g. `--color-brand-purple` generates `text-brand-purple`, `bg-brand-purple`, …
+- **Glass blur / opacity / border** → `src/scss/_variables.scss`.
+- **Keyframes (float, glow-pulse, blob-move, fade-up)** → `src/scss/_animations.scss`.
+
+### Swap an icon
+
+Icons are [Lucide](https://lucide.dev/icons). Import the icon in the component's
+`.ts` file (e.g. `import { Rocket } from 'lucide-angular'`), assign it to a field,
+and bind it in the template via `<lucide-icon [img]="RocketIcon" class="size-6 text-brand-glow" />`.
+
+### Wire up the contact form
+
+`components/contact/contact.ts` → `onSubmit()` currently logs the form value.
+Replace the `TODO` with a call to your backend or an email service
+(e.g. Formspree, EmailJS, or your own API).
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -1,0 +1,30 @@
+/* [COMPONENT: AboutComponent] [STYLE: Floating Card] */
+
+/* Borderless glass card lifted by a deep purple/blue shadow. */
+.about-card {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border-radius: 2rem;
+  box-shadow: var(--shadow-deep);
+}
+
+/* Photo placeholder fill. Replace the inner markup with an <img> in the template. */
+.about-photo {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(124, 58, 237, 0.35), transparent 60%),
+    radial-gradient(circle at 80% 90%, rgba(59, 130, 246, 0.35), transparent 60%),
+    rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+}
+
+/* Trait chips lift slightly on hover. */
+.trait-card {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+.trait-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--glass-border-hover);
+}

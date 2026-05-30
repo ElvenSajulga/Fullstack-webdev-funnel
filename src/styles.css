@@ -1,3 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================================
+   TAILWIND v4 ENTRY + DESIGN TOKENS
+   This file replaces the classic `tailwind.config.js`. In Tailwind v4 the design
+   system lives in CSS inside the `@theme` block. Every token below generates a
+   matching utility class (e.g. `--color-brand-purple` -> `text-brand-purple`,
+   `bg-brand-purple`, `border-brand-purple`).
+   ----------------------------------------------------------------------------
+   The complementary SCSS layer (glassmorphism, @keyframes, parallax, blobs)
+   lives in `styles.scss` and `src/scss/*`.
+   ========================================================================== */
 
 @import 'tailwindcss';
+
+@theme {
+  /* [CONFIG: colors] — Add or change brand colors here.
+     Each value is exposed as Tailwind utilities: text-*, bg-*, border-*, etc. */
+  --color-brand-dark: #07071a; /* Page background base */
+  --color-brand-purple-dark: #6c2bd9; /* Blob purple */
+  --color-brand-blue-dark: #1a56db; /* Blob blue */
+  --color-brand-purple: #7c3aed; /* Primary accent */
+  --color-brand-blue: #3b82f6; /* Secondary accent */
+  --color-brand-glow: #a78bfa; /* Glow highlight */
+  --color-text-primary: #f1f5f9; /* Text primary */
+  --color-text-secondary: #94a3b8; /* Text secondary */
+  --color-glass-border: rgba(255, 255, 255, 0.08); /* Glass border */
+
+  /* [CONFIG: fontFamily] — Swap heading or body font here (loaded in index.html). */
+  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* [CONFIG: animation] — Animation utilities. The matching @keyframes live in
+     src/scss/_animations.scss (CSS keyframes are global, so they resolve here).
+     Usage: class="animate-float", "animate-glow-pulse", "animate-blob-move". */
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.7s ease forwards;
+  --animate-blob-move: blob-move 18s ease-in-out infinite;
+}
+
+/* [SECTION: Global] [STYLE: Base] — Page background + default typography.
+   The radial gradient blobs that tint the dark base live here so they cover the
+   whole document; per-section decorative blobs are added inside components. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-brand-dark);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-purple);
+    color: #fff;
+  }
+}

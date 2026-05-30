@@ -1,0 +1,73 @@
+/* [COMPONENT: HeroComponent] [STYLE: Parallax Blobs + Glow Button] */
+
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Outer wrapper receives the parallax translate (set inline). */
+.hero-blob {
+  position: absolute;
+  will-change: transform;
+}
+
+/* Inner element holds the colored, blurred shape and the slow float loop. */
+.hero-blob__inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  filter: blur(70px);
+  animation: float 9s ease-in-out infinite;
+}
+
+/* [SECTION: Hero] [STYLE: Blob 1] — top-left purple */
+.hero-blob--1 {
+  top: 12%;
+  left: 8%;
+  width: 24rem;
+  height: 24rem;
+}
+.hero-blob--1 .hero-blob__inner {
+  background: radial-gradient(circle at 30% 30%, rgba(124, 58, 237, 0.7), transparent 70%);
+}
+
+/* [SECTION: Hero] [STYLE: Blob 2] — right blue */
+.hero-blob--2 {
+  top: 22%;
+  right: 6%;
+  width: 26rem;
+  height: 26rem;
+}
+.hero-blob--2 .hero-blob__inner {
+  background: radial-gradient(circle at 60% 40%, rgba(59, 130, 246, 0.65), transparent 70%);
+  animation-duration: 11s;
+  animation-direction: reverse;
+}
+
+/* [SECTION: Hero] [STYLE: Blob 3] — bottom-center glow */
+.hero-blob--3 {
+  bottom: 6%;
+  left: 38%;
+  width: 20rem;
+  height: 20rem;
+}
+.hero-blob--3 .hero-blob__inner {
+  background: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.55), transparent 70%);
+  animation-duration: 13s;
+}
+
+/* The gradient glow button (.btn-glow) is a shared global utility in styles.scss. */
+
+/* [SECTION: Hero] [STYLE: Scroll Hint] — bounce loop on the chevron. */
+.scroll-hint {
+  animation: bounce-down 2s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .hero-blob {
+    transform: none !important;
+  }
+}
